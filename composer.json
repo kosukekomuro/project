@@ -1,0 +1,14 @@
+{
+    "name": "komurokosuke/project",
+    "authors": [
+        {
+            "name": "kosukekomuro",
+            "email": "mmc.komuro@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "3.7.*",
+        "php": "~7.0",
+        "ext-mbstring": "*"
+    }
+}
