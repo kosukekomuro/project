@@ -8,7 +8,7 @@
 
 <body>
     <h1>ユーザー登録!</h1>
-    <form method = "post" action = "checl_add_user.php">
+    <form method = "post" action = "check_add_user.php">
       <p>ユーザー名を入力してください</p>
       <input type="text" name="user-name" style="width:200px">
       <p>パスワードを入力してください</p>
