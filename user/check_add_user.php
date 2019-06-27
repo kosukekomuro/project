@@ -51,8 +51,8 @@
       $user_pass = md5($user_pass);
 
       print '<form method="post" action="done_add_user.php">';
-      print '<input type="hidden" name="name" value = "'.$user_name.'">';
-      print '<input type="hidden" name="pass" value = "'.$user_pass.'">';
+      print '<input type="hidden" name="user_name" value = "'.$user_name.'">';
+      print '<input type="hidden" name="password" value = "'.$user_pass.'">';
       print '<br>';
       print '<input type="button" onclick="history.back()" value="もどる">';
       print '<input type="submit" value="OK">';
