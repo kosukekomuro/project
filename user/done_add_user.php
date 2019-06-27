@@ -30,8 +30,6 @@
       $data[] = $user_pass;
       $data[] = date("Y/m/d H:i:s");
       $data[] = date("Y/m/d H:i:s");
-      // $data[] = null;
-      // $data[] = null;
       print_r($data);
 
       $stmt->execute($data);
