@@ -15,24 +15,25 @@
       $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
       $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
 
-      // データベースに接続
-      require_once __DIR__.'/../vendor/autoload.php';
-      $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
-      $dotenv->load();
+      
+      // ローカルの場合、読み込む
+      //環境変数のよみこみ
+      if(getenv('SERVER_NAME') == "localhost"){
+        require_once __DIR__.'/../vendor/autoload.php';
+        $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
+        $dotenv->load();
+      }
+
       $db['db_name'] = getenv('DATABASE_NAME');
       $db['db_host'] = getenv('DATABASE_HOST');
       $db['db_user'] = getenv('DATABASE_USER');
       $db['db_pass'] = getenv('DATABASE_PASS');
-      // print_r($db);
- 
 
+      // データベースに接続
       $dsn = "mysql:dbname=$db[db_name];host=$db[db_host];charset=utf8";
-      // print_r($dsn);
       $dbn = new PDO($dsn, $db['db_user'], $db['db_pass']);
-      // print_r($dbn);
       $dbn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      // print_r($dbn);
-      
+
       //SQLの発行
       $sql = 'INSERT INTO users(name, password, created_at, updated_at) VALUES (?,?,?,?)';
       $stmt = $dbn->prepare($sql);
@@ -41,7 +42,6 @@
       $data[] = $user_pass;
       $data[] = date("Y/m/d H:i:s");
       $data[] = date("Y/m/d H:i:s");
-      // print_r($data);
 
       $stmt->execute($data);
 
@@ -58,9 +58,6 @@
       echo mysql_error(); //mysql関数を使っているとき
       
       print 'ただいま障害により大変ご迷惑をおかけしております';
-      
-      // 強制終了
-      // exit();
     }
   ?>
 

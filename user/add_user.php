@@ -19,15 +19,6 @@
       <input type="button" onlclick="history.back()" value="もどる">
       <input type="submit" value="OK">
     </form>
-    <?php 
-      require_once __DIR__.'/../vendor/autoload.php';
-      $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
-      $dotenv->load();
-
-      print "<pre>\n";
-      print_r($_SERVER);
-      print "</pre>\n";
-    ?>
 </body>
 
 </html>
