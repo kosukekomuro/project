@@ -24,7 +24,11 @@
     <a href = "/project/user/add_user.php">
       新規登録
     </a>
-
+    <div>
+      <?php
+        // print_r(getenv('CLEARDB_DATABASE_URL'));
+      ?>
+    </div>
 </body>
 
 </html>
