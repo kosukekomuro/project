@@ -19,7 +19,10 @@
       <input type="button" onlclick="history.back()" value="もどる">
       <input type="submit" value="OK">
     </form>
-    <?php echo "php test"; ?>
+    <?php echo "php test"; 
+    print_r(getenv('PHP_ENV'));
+    
+    ?>
 </body>
 
 </html>
