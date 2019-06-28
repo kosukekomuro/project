@@ -24,7 +24,20 @@
     <a href = "/project/user/add_user.php">
       新規登録
     </a>
-
+    <div>
+      <?php
+        require_once __DIR__.'/vendor/autoload.php';
+        // echo dirname(__DIR__);
+        $dotenv = Dotenv\Dotenv::create(__DIR__);
+        $dotenv->load();
+        print_r(getenv('CLEARDB_DATABASE_URL'));
+        // print "<pre>\n";
+        // print_r($_SERVER);
+        // print "</pre>\n";
+        // $dotenv->load();
+        // echo $_ENV['CLEARDB_DATABASE_URL'];    // http://hoge.example.com
+      ?>
+    </div>
 </body>
 
 </html>
