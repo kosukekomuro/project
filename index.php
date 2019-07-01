@@ -11,9 +11,9 @@
     <h1>Taskal へようこそ!</h1>
   </header>
   <main>
-    <form id="login_form" name="login_form" action="" method="POST">
-      <label for="user_id">ユーザーID</label>
-      <input type="text" id="user_id" name="user_id" placeholder="ユーザーID">
+    <form id="login_form" name="login_form" action="views/users/check_login.php" method="POST">
+      <label for="user_name">ユーザー名</label>
+      <input type="text" id="user_name" name="user_name" placeholder="ユーザーID">
       <br>
       <label for="user_password">パスワード</label>
       <input type="passeord" id="user_password" name="user_password" placeholder="パスワード">
