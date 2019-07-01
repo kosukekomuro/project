@@ -11,8 +11,9 @@ try{
 	// ローカル環境の場合、読み込む
 	//環境変数のよみこみ
 	if(getenv('SERVER_NAME') == "localhost"){
-		require_once __DIR__.'/../vendor/autoload.php';
-		$dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
+		require_once '/opt/lampp/htdocs/project/vendor/autoload.php';
+		$dotenv = Dotenv\Dotenv::create('/opt/lampp/htdocs/project');
+		// print_r(__DIR__.'/../../');
 		$dotenv->load();
 	}
 
@@ -37,18 +38,19 @@ try{
 	// データベースから切断する。
 	$dbn = null;
 
-	
 	// print_r($stmt);
 	// print_r($data);
 
 	$rec = $stmt->fetch(PDO::FETCH_ASSOC);
+	// print_r($rec);
 
 	if($rec == false){
 		print 'ユーザー名またはパスワードが間違っています';
-		print '<a href="../index.php">もどる</a>';
+		print '<a href="/opt/lampp/htdocs/project/index.php">もどる</a>';
 	}else{
 		print $user_name; 
-		print "さん、こんにちは！"; 
+		print "さん、こんにちは！";
+		header('Location: ../tasks/task_list.php');
 	};
 
 }catch(exception $e){

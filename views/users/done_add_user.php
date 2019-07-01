@@ -15,12 +15,12 @@
       $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
       $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
 
-      
       // ローカル環境の場合、読み込む
       //環境変数のよみこみ
       if(getenv('SERVER_NAME') == "localhost"){
-        require_once __DIR__.'/../vendor/autoload.php';
-        $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
+        require_once '/opt/lampp/htdocs/project/vendor/autoload.php';
+        // $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
+        $dotenv = Dotenv\Dotenv::create('/opt/lampp/htdocs/project');
         $dotenv->load();
       }
 
@@ -53,8 +53,8 @@
 
     }catch(Exception $e){
       // SQLのエラーは通常表示されないが、以下のようにすることで表示することができる
-      var_dump($pdo->errorInfo()); //PDOを使っているとき
-      var_dump($stmt->errorInfo()); //PDOを使っているとき
+      // var_dump($pdo->errorInfo()); //PDOを使っているとき
+      // var_dump($stmt->errorInfo()); //PDOを使っているとき
       echo mysql_error(); //mysql関数を使っているとき
       
       print 'ただいま障害により大変ご迷惑をおかけしております';

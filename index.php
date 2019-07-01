@@ -21,7 +21,7 @@
       <input type="submit" id="login_button" name="login_button" value="ログイン">
     </form>
   </main>
-    <a href = "/project/user/add_user.php">
+    <a href = "/project/views/users/add_user.php">
       新規登録
     </a>
 </body>
