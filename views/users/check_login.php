@@ -48,8 +48,14 @@ try{
 		print 'ユーザー名またはパスワードが間違っています';
 		print '<a href="/opt/lampp/htdocs/project/index.php">もどる</a>';
 	}else{
-		print $user_name; 
-		print "さん、こんにちは！";
+		// セッションの開始
+		// sessionがない場合は、自動で合言葉を決める
+		session_start();
+		$_SESSION['login']=1;
+		$_SESSION['user_name']= $rec['name'];
+		$_SESSION['user_id']= $rec['id'];
+
+		// 遷移先の画面指定
 		header('Location: ../tasks/task_list.php');
 	};
 
