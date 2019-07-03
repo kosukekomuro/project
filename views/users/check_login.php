@@ -13,7 +13,6 @@ try{
 	if(getenv('SERVER_NAME') == "localhost"){
 		require_once '/opt/lampp/htdocs/project/vendor/autoload.php';
 		$dotenv = Dotenv\Dotenv::create('/opt/lampp/htdocs/project');
-		// print_r(__DIR__.'/../../');
 		$dotenv->load();
 	}
 
@@ -28,7 +27,7 @@ try{
 	$dbn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	//SQLの発行
-	$sql = 'SELECT name FROM users WHERE name=? AND password=?';
+	$sql = 'SELECT name, id FROM users WHERE name=? AND password=?';
 	$stmt = $dbn->prepare($sql);
 
 	$data[] = $user_name;
@@ -48,8 +47,14 @@ try{
 		print 'ユーザー名またはパスワードが間違っています';
 		print '<a href="/opt/lampp/htdocs/project/index.php">もどる</a>';
 	}else{
-		print $user_name; 
-		print "さん、こんにちは！";
+		// セッションの開始
+		// sessionがない場合は、自動で合言葉を決める
+		session_start();
+		$_SESSION['login']=1;
+		$_SESSION['user_name']= $rec['name'];
+		$_SESSION['user_id']= $rec['id'];
+
+		// 遷移先の画面指定
 		header('Location: ../tasks/task_list.php');
 	};
 

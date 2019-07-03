@@ -1,4 +1,15 @@
 <?php
+  //セッションの確認 
+  session_start();
+  // セッションの合言葉を変える命令。
+  session_regenerate_id(true);
+
+  if(isset($_SESSION['login'])==false){
+    print 'ログインしていません。<br>';
+    print '<a href="../../">ログイン画面へ</a>';
+    exit();
+  }
+
   $task_name= $_POST['task_name'];
   // print_r($_POST);
   $task_name = htmlspecialchars($task_name, ENT_QUOTES, 'UTF-8');
@@ -34,7 +45,7 @@
       $stmt = $dbn->prepare($sql);
 
       $data[] = $task_name;
-      $data[] = 2;
+      $data[] = $_SESSION['user_id'];
 
       // var_dump($data);
       // print '<br>';
