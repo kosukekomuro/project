@@ -7,16 +7,16 @@
 
 <body>
   <?php
+    require_once('../../common/common.php');
+
+    // 特殊文字をHTMLエンティティに変換する。
+    $_POST=santize($_POST);
+
     // 前の画面からの変数受け取り
     $user_name = $_POST['user-name'];
     $user_pass = $_POST['password'];
     $user_confirm_pass = $_POST['confirm-pass'];
     $check_flag = true;
-
-    // 特殊文字をHTMLエンティティに変換する。
-    $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
-    $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
-    $user_confirm_pass = htmlspecialchars($user_confirm_pass, ENT_NOQUOTES, 'UTF-8');
 
     //ユーザー名の登録確認
     if($user_name == ''){
