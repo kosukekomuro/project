@@ -34,7 +34,7 @@
     $dbn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //SQLの発行
-    $sql = 'SELECT task_name FROM tasks WHERE user_id = ?';
+    $sql = 'SELECT task_name, id FROM tasks WHERE user_id = ?';
     $stmt = $dbn->prepare($sql);
 
     $data[] = $_SESSION['user_id'];
@@ -73,6 +73,12 @@
         break;
       }
       print $rec['task_name'];
+      print '<form method="post" action="../../models/tasks/delete_task.php">';
+      print '<input type="hidden" name="task_id" value=';
+      print $rec['id'];
+      print '>';
+      print '<input type="submit" value="削除">';
+      print '</form>';
       print '<br>';
     }
   ?>
