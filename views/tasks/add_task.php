@@ -40,8 +40,10 @@
       // print '<br>';
 
       $stmt->execute($data);
-
       $dbn = null;
+
+      // 遷移先を指定
+      header('Location: task_list.php');
 
     }catch(Exception $e){
       // var_dump($pdo->errorInfo()); //PDOを使っているとき
