@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Taskal</title>
+    <?php include ('views/common/heads/head1.html'); ?>
+
 </head>
 
 <body>
   <header>
-    <h1>Taskal へようこそ!</h1>
+    <h1 >Taskal へようこそ!</h1>
   </header>
   <main>
     <form id="login_form" name="login_form" action="views/users/check_login.php" method="POST">
