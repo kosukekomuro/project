@@ -16,6 +16,11 @@ input a{
   min-height: 100vh;
 }
 
+.btn-primary:hover {
+  color: #007bff;
+  background-color: var(--btn-color-white);
+}
+
 .taskal-container{
   padding: 50px 100px;
 }
@@ -37,7 +42,7 @@ input a{
     align-items: center;
   }
     .login-form__name{
-      /* margin-top: 20px; */
+      margin-top: 20px;
     }
     .login-form__password{
       margin-top: 20px;
@@ -70,5 +75,35 @@ input a{
       color: var(--font-color-blue);
       text-decoration: none;
     }
+
+
+.task-main{
+  padding: 20px;
+  margin: 0 auto;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+  .task-main__task-list{
+    margin-top:20px;
+  }
+  .task-main__add-task-form{
+    margin-top: 20px;
+  }
+
+.one-task{
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-footer{
+  display: flex;
+  justify-content: center;
+}
 
 
