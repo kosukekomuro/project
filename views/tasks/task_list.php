@@ -30,39 +30,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+  <?php include ('../common/heads/head2.html'); ?>
 </head>
-
 <body>
-  <a href="../../controllers/logout.php">ログアウト</a>
-  <br>
-  タスク一覧
-  <br>
-  <?php
-    while(true){
-      //$stmtからレコードを一つずつ取り出す。
-      // 実行するごとに次のレコードを取り出す。
-      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+  <div class="container-feild main-background taskal-container">
+    <header class="main-header">
+    </header>
+    <main class="task-main">
+      <h3 class="task-main__title">
+        タスク一覧
+      </h3>
+      <?php
+        print '<div class="task-main__task-list">';
+        while(true){
+          //$stmtからレコードを一つずつ取り出す。
+          // 実行するごとに次のレコードを取り出す。
+          $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      if($rec == false){
-        break;
-      }
-      print $rec['task_name'];
-      print '<form method="post" action="../../models/tasks/delete_task.php">';
-      print '<input type="hidden" name="task_id" value=';
-      print $rec['id'];
-      print '>';
-      print '<input type="submit" value="完了">';
-      print '</form>';
-      print '<br>';
-    }
-  ?>
-  <form id="add_task_form" name="add_task_form" action="add_task.php" method="POST">
-    <label for="task_name">タスク追加</label>
-    <input type="text" id="task_name" name="task_name" placeholder="タスク入力">
-    <input type="submit" value="作成">
-  </form>
+          if($rec == false){
+            break;
+          }
+          print '<form class="one-task" method="post" action="../../models/tasks/delete_task.php">';
+          print '<span>'; 
+          print $rec['task_name'];
+          print '</span>'; 
+          print '<input type="hidden" name="task_id" value=';
+          print $rec['id'];
+          print '>';
+          print '<input type="submit" value="完了">';
+          print '</form>';
+        }
+        print '</div>';
+      ?>
+      <form id="add_task_form" class="task-main__add-task-form" name="add_task_form" action="add_task.php" method="POST">
+        <label for="task_name">タスク追加</label>
+        <input type="text" id="task_name" name="task_name" placeholder="タスク入力">
+        <input type="submit" value="作成">
+      </form>
+    </main>
+    <footer class="main-footer">
+      <a class="btn btn-primary" href="../../controllers/logout.php">ログアウト</a>
+    </footer>
+  </div>
 </body>
 
 </html>
