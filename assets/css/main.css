@@ -1,0 +1,74 @@
+:root{
+  --main-background-color: #DDFFFF;
+  --font-color-gray: #CCC;
+  --font-color-white: #FFF;
+  --font-color-blue: #4689FF;
+  --btn-color-blue: #4689FF;
+  --btn-color-white: #FFF;
+}
+
+input a{
+  display: block;
+}
+
+.main-background{
+  background-color: var(--main-background-color);
+  min-height: 100vh;
+}
+
+.taskal-container{
+  padding: 50px 100px;
+}
+
+.title{
+  font-size: 20px;
+  color: var(--font-color-gray);
+}
+
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .login-form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    .login-form__name{
+      /* margin-top: 20px; */
+    }
+    .login-form__password{
+      margin-top: 20px;
+    }
+    .login-form__login-btn{
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: var(--btn-color-blue);
+      color: var(--font-color-white);
+    }
+      .login-form__login-btn:hover{
+        background-color: var(--btn-color-white);
+        color: var(--font-color-blue);
+      }
+    .login-form__signup-btn{
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: var(--btn-color-blue);
+      color: var(--font-color-white);
+      text-align: center;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+      border-image: initial;
+    }
+    .login-form__signup-btn:hover{
+      background-color: var(--btn-color-white);
+      color: var(--font-color-blue);
+      text-decoration: none;
+    }
+
+
