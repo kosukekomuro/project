@@ -10,7 +10,7 @@
     $dbn = connection_to_db();
 
     //SQLの発行
-    $sql = 'SELECT task_name, id FROM tasks WHERE user_id = ?';
+    $sql = 'SELECT task_name, id FROM tasks WHERE user_id = ? ORDER BY task_order';
     $stmt = $dbn->prepare($sql);
     $data[] = $_SESSION['user_id'];
     
