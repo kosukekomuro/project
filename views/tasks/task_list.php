@@ -12,7 +12,6 @@
     //SQLの発行
     $sql = 'SELECT task_name, id FROM tasks WHERE user_id = ?';
     $stmt = $dbn->prepare($sql);
-
     $data[] = $_SESSION['user_id'];
     
     // stmtには検索したデータの一覧が代入うされている
@@ -41,15 +40,18 @@
         タスク一覧
       </h3>
       <?php
-        print '<div class="task-main__task-list">';
+        print '<ul class="task-main__task-ul">';
+
+        $num = 0;
         while(true){
           //$stmtからレコードを一つずつ取り出す。
-          // 実行するごとに次のレコードを取り出す。
+          //実行するごとに次のレコードを取り出す。
           $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
           if($rec == false){
             break;
           }
+          print '<li class="task-list" draggable="true">';
           print '<form class="one-task" method="post" action="../../models/tasks/delete_task.php">';
           print '<span>'; 
           print $rec['task_name'];
@@ -59,8 +61,12 @@
           print '>';
           print '<input type="submit" value="完了">';
           print '</form>';
+          print '</li>';
+          $num += 1;
         }
-        print '</div>';
+        print '<li class="task-list" draggable="true">';
+        print '</li>';
+        print '</ul>';
       ?>
       <form id="add_task_form" class="task-main__add-task-form" name="add_task_form" action="add_task.php" method="POST">
         <label for="task_name">タスク追加</label>
@@ -72,6 +78,10 @@
       <a class="btn btn-primary" href="../../controllers/logout.php">ログアウト</a>
     </footer>
   </div>
+
+  <!-- jsの読み込み -->
+  <!-- ページの表示速度を上げるため最後に読み込む -->
+  <script type="text/javascript" src="../../assets/js/main.js"></script>
 </body>
 
 </html>

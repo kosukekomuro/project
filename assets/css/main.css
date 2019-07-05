@@ -11,6 +11,10 @@ input a{
   display: block;
 }
 
+ul{
+  list-style: none;
+}
+
 .main-background{
   background-color: var(--main-background-color);
   min-height: 100vh;
@@ -84,26 +88,41 @@ input a{
   display: flex;
   flex-direction: column;
 }
-  .task-main__task-list{
+  .task-main__task-ul{
     margin-top:20px;
   }
   .task-main__add-task-form{
     margin-top: 20px;
   }
 
-.one-task{
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-}
+  /* .task-list{
+    display:block;
+    height: 43px;
+    width: 420px;
+    content: "";
+  } */
+
+  .one-task{
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
 
 .main-footer{
   display: flex;
   justify-content: center;
 }
+
+/* .over{
+  border-top: 2px solid blue;
+} */
+
+/* .dragElem {
+  opacity: 0.4;
+} */
 
 
