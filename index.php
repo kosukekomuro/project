@@ -20,7 +20,7 @@
       </div> -->
       <form id="login_form" class="login-form" name="login_form" action="views/users/check_login.php" method="POST">
         <input type="text" id="user_name" class="login-form__name" name="user_name" placeholder="ユーザー名">
-        <input type="passeord" id="user_password" class="login-form__password" name="user_password" placeholder="パスワード">
+        <input type="password" id="user_password" class="login-form__password" name="user_password" placeholder="パスワード">
         <input type="submit" id="login_button" class="login-form__login-btn" name="login_button" value="ログイン">
         <a class="login-form__signup-btn" href ="/project/views/users/add_user.php">
           <span>新規登録</span>
