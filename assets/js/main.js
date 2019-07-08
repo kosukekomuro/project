@@ -1,11 +1,13 @@
-var dragSrcEl = null;
+let dragSrcEl = null;
+let taskOrder = null;
 
   const handleDragStart = e => {
     dragSrcEl = e.currentTarget;
     e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', e.currentTarget.outerHTML);
-    // //  指定した要素にクラスメイをつい以下する
-    // e.currentTarget.classList.add('dragElem');
+    e.dataTransfer.setData('text', dragSrcEl.outerHTML);
+    // タスクのオーダー順を取得
+    taskOrder = dragSrcEl.getElementsByClassName('task_info')[0].getAttribute("task_order");
+    // 指定した要素にクラス名を追加する
   }
 
   const handleDragOver = e => {
@@ -35,10 +37,40 @@ var dragSrcEl = null;
 
     // 自分の要素でない時は実行しない。
     if (dragSrcEl != e.currentTarget) {
+      // ドロップする場所の要素を取得
+      let dropSrcEl = e.currentTarget;
+
+      // ドロップした要素を追加
+      var dropHTML = e.dataTransfer.getData('text');
+      dropSrcEl.insertAdjacentHTML('beforebegin', dropHTML);
+
+      const dropTaskOrder = dropSrcEl.getElementsByClassName('task_info')[0].getAttribute("task_order");
+      let min;
+      let max;
+      let overwrite_element;
+
+      // ドラッグしている要素のドロップ場所の上下ごとに条件を設定
+      if(taskOrder < dropTaskOrder){
+        min = taskOrder;
+        max = dropTaskOrder;
+        overwrite_element = dragSrcEl.nextElementSibling;
+      }else{
+        min = dropTaskOrder;
+        max = taskOrder;
+        overwrite_element = dropSrcEl.previousSibling;
+      }
+
+      // task_orderの上書き
+      for (let order = min; order <= max; order++) {
+        // 値が min から max まで実行される
+        overwrite_element.getElementsByClassName('task_info')[0].setAttribute("task_order", order);
+        overwrite_element = overwrite_element.nextElementSibling;
+      }
+
+      // 元の要素を削除
       e.currentTarget.parentNode.removeChild(dragSrcEl);
-      var dropHTML = e.dataTransfer.getData('text/html');
-      e.currentTarget.insertAdjacentHTML('beforebegin', dropHTML);
-      var dropElem = e.currentTarget.previousSibling;
+      
+      const dropElem = dropSrcEl.previousSibling;
       addDnDHandlers(dropElem);
     }
     e.currentTarget.classList.remove('over');

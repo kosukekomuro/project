@@ -10,7 +10,7 @@
     $dbn = connection_to_db();
 
     //SQLの発行
-    $sql = 'SELECT task_name, id FROM tasks WHERE user_id = ? ORDER BY task_order';
+    $sql = 'SELECT task_name, id, task_order FROM tasks WHERE user_id = ? ORDER BY task_order';
     $stmt = $dbn->prepare($sql);
     $data[] = $_SESSION['user_id'];
     
@@ -56,16 +56,13 @@
           print '<span>'; 
           print $rec['task_name'];
           print '</span>'; 
-          print '<input type="hidden" name="task_id" value=';
-          print $rec['id'];
+          print "<input type='hidden' class='task_info' name='task_id' value={$rec['id']} task_order = {$rec['task_order']}" ;
           print '>';
           print '<input type="submit" value="完了">';
           print '</form>';
           print '</li>';
           $num += 1;
         }
-        print '<li class="task-list" draggable="true">';
-        print '</li>';
         print '</ul>';
       ?>
       <form id="add_task_form" class="task-main__add-task-form" name="add_task_form" action="add_task.php" method="POST">
