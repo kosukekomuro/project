@@ -7,6 +7,10 @@
   --btn-color-white: #FFF;
 }
 
+.taskal-container{
+  display: none;
+}
+
 input a{
   display: block;
 }

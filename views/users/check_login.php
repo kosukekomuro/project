@@ -45,7 +45,7 @@ try{
 
 	if($rec == false){
 		print 'ユーザー名またはパスワードが間違っています';
-		print '<a href="/opt/lampp/htdocs/project/index.php">もどる</a>';
+		print '<a href="/project">もどる</a>';
 	}else{
 		// セッションの開始
 		// sessionがない場合は、自動で合言葉を決める

@@ -1,5 +1,9 @@
-let dragSrcEl = null;
-let taskOrder = null;
+Pace.on('done', function(){
+
+  $('.taskal-container').fadeIn();
+
+  let dragSrcEl = null;
+  let taskOrder = null;
 
   const handleDragStart = e => {
     dragSrcEl = e.currentTarget;
@@ -123,4 +127,5 @@ let taskOrder = null;
     var cols = document.querySelectorAll('.task-main__task-ul .task-list');
     [].forEach.call(cols, addDnDHandlers);
   });
+});
 
