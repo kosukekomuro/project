@@ -33,16 +33,22 @@ ul{
   padding: 50px 100px;
 }
 
-.title{
-  font-size: 20px;
-  color: var(--font-color-gray);
+.index-header{
+  display: flex;
+  justify-content: center;
 }
 
 .login{
+
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+  .login__title{
+    font-size: 20px;
+    color: var(--font-color-gray);
+  }
   .login-form{
     margin-top: 20px;
     display: flex;
@@ -99,13 +105,6 @@ ul{
     margin-top: 20px;
   }
 
-  /* .task-list{
-    display:block;
-    height: 43px;
-    width: 420px;
-    content: "";
-  } */
-
   .one-task{
     border-width: 1px;
     border-style: solid;
@@ -121,12 +120,6 @@ ul{
   justify-content: center;
 }
 
-/* .over{
-  border-top: 2px solid blue;
-} */
 
-/* .dragElem {
-  opacity: 0.4;
-} */
 
 

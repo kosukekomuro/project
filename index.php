@@ -7,10 +7,10 @@
 
 <body>
   <div class="container-feild main-background taskal-container">
+    <header class="index-header">
+      <img src="assets/image/main-logo.png">
+    </header>
     <main class="login">
-      <header>
-        <h1 class="title">ログイン</h1>
-      </header>
       <form id="login_form" class="login-form" name="login_form" action="views/users/check_login.php" method="POST">
         <input type="text" id="user_name" class="login-form__name" name="user_name" placeholder="ユーザー名">
         <input type="password" id="user_password" class="login-form__password" name="user_password" placeholder="パスワード">
