@@ -37,9 +37,6 @@
     $db['db_user'] = getenv('DATABASE_USER');
     $db['db_pass'] = getenv('DATABASE_PASS');
 
-    // var_dump($db);
-    // print('<br>');
-
     // データベースに接続
     $dsn = "mysql:dbname=$db[db_name];host=$db[db_host];charset=utf8";
     $dbn = new PDO($dsn, $db['db_user'], $db['db_pass']);

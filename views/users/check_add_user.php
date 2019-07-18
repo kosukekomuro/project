@@ -10,7 +10,7 @@
     require_once('../../common/common.php');
 
     // 特殊文字をHTMLエンティティに変換する。
-    $_POST=santize($_POST);
+    $_POST=sanitize($_POST);
 
     // 前の画面からの変数受け取り
     $user_name = $_POST['user-name'];

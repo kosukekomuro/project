@@ -16,7 +16,7 @@
       <p>再度パスワードを入力してください。</p>
       <input type="password" name="confirm-pass" style="width:100px">
       <br>
-      <input type="button" onlclick="history.back()" value="もどる">
+      <button type="button" onclick="history.back()">戻る</button>
       <input type="submit" value="OK">
     </form>
 </body>
