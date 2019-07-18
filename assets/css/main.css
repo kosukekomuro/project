@@ -29,6 +29,11 @@ ul{
   background-color: var(--btn-color-white);
 }
 
+.error-message{
+  margin-top:10px;
+  color: red;
+}
+
 .taskal-container{
   padding: 50px 100px;
 }
