@@ -1,7 +1,5 @@
 Pace.on('done', function(){
-
-  $('.taskal-container').fadeIn();
-  
+  $('.taskal-container').hide().fadeIn();
 });
 
 let dragSrcEl = null;

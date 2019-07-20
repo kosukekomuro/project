@@ -125,6 +125,45 @@ ul{
   justify-content: center;
 }
 
+.sign-up{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .sign-up__title{
+    
+  }
 
-
-
+.sign-up-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .sign-up-form__name{
+    margin-top: 20px;
+  }
+  .sign-up-form__password{
+    margin-top: 20px;
+  }
+  .sign-up-form__confirm-password{
+    margin-top: 20px;
+  }
+  .sign-up-form__btn{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
+  }
+    .sign-up-form__btn--blue{
+      width: 70px;
+      padding: 10px;
+      background-color: var(--btn-color-blue);
+      color: var(--font-color-white);
+    }
+    .sign-up-form__btn--blue:hover{
+      background-color: var(--btn-color-white);
+      color: var(--font-color-blue);
+      text-decoration: none;
+    }
