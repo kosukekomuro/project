@@ -15,7 +15,7 @@
         <input type="text" id="user_name" class="login-form__name" name="user_name" placeholder="ユーザー名">
         <input type="password" id="user_password" class="login-form__password" name="user_password" placeholder="パスワード">
         <input type="submit" id="login_button" class="login-form__login-btn" name="login_button" value="ログイン">
-        <a class="login-form__signup-btn" href ="/project/views/users/add_user.php">
+        <a class="login-form__signup-btn" href ="views/users/add_user.php">
           <span>新規登録</span>
         </a>
       </form>
