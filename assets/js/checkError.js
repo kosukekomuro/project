@@ -1,25 +1,11 @@
 /**
-*ユーザー名の入力チェックを行う関数
+*入力されているかのエラーチェック
 *@constructor
-*@param {String} userName ユーザー名
+*@param {String} input 入力値
 */
-const checkInputUserName = userName =>{
+const checkInput = input =>{
   // ユーザー未入力時
-  if(userName.length == 0){
-    return true
-  }
-
-  return false
-};
-
-/**
-*パスワードの入力チェックを行う関数
-*@constructor
-*@param {String} password パスワード
-*/
-const checkInputPassword = password =>{
-  // ユーザー未入力時
-  if(password.length == 0){
+  if(input.length == 0){
     return true
   }
 
@@ -48,7 +34,7 @@ window.onload = () => {
     $(".error-message").remove();
 
     // ユーザー名が空欄の時
-    if(checkInputUserName(document.login_form.user_name.value)){
+    if(checkInput(document.login_form.user_name.value)){
       let html = `<p class="error-message">
                     ユーザー名が入力されていません
                   </p>`
@@ -58,7 +44,7 @@ window.onload = () => {
     };
 
     // パスワードが空欄の時
-    if(checkInputPassword(document.login_form.user_password.value)){
+    if(checkInput(document.login_form.user_password.value)){
       let html = `<p class="error-message">
                     パスワードが入力されていません
                   </p>`
@@ -100,7 +86,7 @@ window.onload = () => {
     $(".error-message").remove();
 
     // ユーザー名チェック
-    if(checkInputUserName(document.sign_up_form.user_name.value)){
+    if(checkInput(document.sign_up_form.user_name.value)){
       let html = `<p class="error-message">
                     ユーザー名が入力されていません
                   </p>`
@@ -110,7 +96,7 @@ window.onload = () => {
     };
 
     // パスワードチェック
-    if(checkInputPassword(document.sign_up_form.user_password.value)){
+    if(checkInput(document.sign_up_form.user_password.value)){
       let html = `<p class="error-message">
                     パスワードが入力されていません
                   </p>`
@@ -126,6 +112,20 @@ window.onload = () => {
                   </p>`
 
       $('.sign-up-form__confirm-password').after(html);
+      e.preventDefault();
+    };
+  });
+  // 入力チェックを行う。
+  $('.task-main__add-task-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+    // タスクの入力値チェック
+    if(checkInput(document.add_task_form.task_name.value)){
+      let html = `<p class="error-message">
+                    タスク名を入力してください
+                  </p>`
+
+      $('.task-main__add-task-form').after(html);
       e.preventDefault();
     };
   });
