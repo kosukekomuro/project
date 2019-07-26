@@ -120,12 +120,25 @@ window.onload = () => {
     
     $(".error-message").remove();
     // タスクの入力値チェック
-    if(checkInput(document.add_task_form.task_name.value)){
+    if(checkInput($(".task-name").val())){
       let html = `<p class="error-message">
                     タスク名を入力してください
                   </p>`
 
       $('.task-main__add-task-form').after(html);
+      e.preventDefault();
+    };
+  });
+
+  $('.add-detail-task-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+    // タスクの入力値チェック
+    if(checkInput($(".add-detail-task-form__task-name").val())){
+      let html = `<p class="error-message">
+                    タスク名を入力してください
+                  </p>`
+      $(".add-detail-task-form__task-name").after(html);
       e.preventDefault();
     };
   });
