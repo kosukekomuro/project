@@ -34,7 +34,7 @@
 <body>
   <div class="container-feild main-background taskal-container">
     <div class="detail_task">
-      <form id="detail_task_form" class="add-detail-task-form" name="add_detail_task_form" action="add_task.php" method="POST">
+      <form id="detail_task_form" class="add-detail-task-form" name="add_detail_task_form" action="../../models/tasks/add_task_detail.php" method="POST">
           <input type="text" id="detail_task_name" name="detail_task_name" placeholder="タスク名" class="add-detail-task-form__task-name" cols="40">
           <textarea id="task_discription" name="task_discription" placeholder="タスク詳細" class="add-detail-task-form__task-discription", cols="40" rows="8"></textarea>
           <input type="datetime-local" id="task_due_date" name="task_due_date" placeholder="期限" class="add-detail-task-form__task-due-date">
