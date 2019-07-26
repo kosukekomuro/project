@@ -113,13 +113,30 @@ const addDnDHandlers = elem => {
   elem.addEventListener('dragend', handleDragEnd, false);
 }
 
-$(document).ready( function(){
+// $(document).ready(function(){ と同様の動作をおこなう
+$(function(){
 
   // 一致する要素全てをNodelistとして取得する
   // ドラッヅアンドドロップに関わる記事
   // https://app.codegrid.net/entry/dnd-api-1
-  var cols = document.querySelectorAll('.task-main__task-ul .task-list');
+  const cols = document.querySelectorAll(".task-main__task-ul .task-list");
   [].forEach.call(cols, addDnDHandlers);
+
+
+  // ポップアップ画面の表示
+  $(".make-task-details").on("click", () => {
+    $(".detail_task").css("display", "block");
+    $(".taskal-container").css("background-color", "rgba(0,0,0,0.4)");
+  });
+
+  // キャンセルボタンの桜花
+  $(".add-detail-task-form__cancel-btn").on("click", () => {
+    $(".detail_task").removeAttr('style');
+    $(".taskal-container").removeAttr('style');
+    $(".taskal-container").css("display", "block");
+  });
 });
+
+
 
 

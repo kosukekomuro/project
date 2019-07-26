@@ -33,6 +33,14 @@
 </head>
 <body>
   <div class="container-feild main-background taskal-container">
+    <div class="detail_task">
+      <form id="detail_task_form" class="add-detail-task-form" name="add_detail_task_form" action="add_task.php" method="POST">
+          <label for="detail_task_name">タスク名</label>
+          <input type="text" id="detail_task_name" name="detail_task_name" placeholder="タスク入力" class="task-name">
+          <input type="submit" value="作成">
+          <input type="button" class="add-detail-task-form__cancel-btn" value="キャンセル">
+      </form>
+    </div>
     <header class="main-header">
     </header>
     <main class="task-main">
@@ -62,6 +70,7 @@
           print '</form>';
           print '</li>';
           $num += 1;
+
         }
         print '</ul>';
       ?>
@@ -69,6 +78,7 @@
         <label for="task_name">タスク追加</label>
         <input type="text" id="task_name" name="task_name" placeholder="タスク入力" class="task-name">
         <input type="submit" value="作成">
+        <input type="button" class="make-task-details" value="詳細作成">
       </form>
     </main>
     <footer class="main-footer">
