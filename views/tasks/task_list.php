@@ -81,7 +81,7 @@
           print "<input type='hidden' class='task_info' name='task_id' value={$rec['id']} task_order = {$rec['task_order']}" ;
           print '>';
           print '<div>';
-          print '<input type="button" class="one-task__update-btn" value="変更">';
+          print "<input type='button' class='one-task__update-btn' value='変更' task_id = {$rec['id']}> ";
           print '<input type="submit" value="完了">';
           print '</div>';
           print '</form>';

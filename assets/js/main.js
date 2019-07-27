@@ -134,21 +134,52 @@ $(function(){
     $(".detail_task").removeAttr('style');
     $(".taskal-container").removeAttr('style');
     $(".taskal-container").css("display", "block");
+    $(".error-message").remove();
   });
 
   // タスク変更画面の表示
-  $(".one-task__update-btn").on("click", () => {
-    $(".task-main").css("display", "none");
-    $(".update_task").css("display", "block");
-    $(".taskal-container").css("background-color", "rgba(0,0,0,0.4)");
+  $(".one-task__update-btn").on("click", e => {
+
+    const task = $(e.currentTarget);
+    data = {task_id: task.attr('task_id')};
+
+      $.ajax({
+        url: "../../models/tasks/select_task.php",
+        type: "POST",
+        data: data,
+        dataType: 'json',
+      })
+      .done(function(data){
+        // 日付のフォーマットを変更
+        let dueDate = null;
+
+        if(data.due_date != null){
+          dueDate = data.due_date.replace(" ", "T");
+        };
+
+        // フォームにタスク詳細を設定
+        $('.update-task-form__task-name').val(data.task_name);
+        $('.update-task-form__task-discription').val(data.task_discription);
+        $('.update-task-form__task-due-date').val(dueDate);
+
+        // ポップアップ画面の表示
+        $(".task-main").css("display", "none");
+        $(".update_task").css("display", "block");
+        $(".taskal-container").css("background-color", "rgba(0,0,0,0.4)");
+      })
+      .fail(function(){
+        alert('通信に失敗しました。再度読み込んでください');
+      });
   });
 
-  // キャンセルボタンの桜花
+  // キャンセルボタンの押下
   $(".update-task-form__cancel-btn").on("click", () => {
     $(".task-main").css("display", "block");
     $(".update_task").removeAttr('style');
     $(".taskal-container").removeAttr('style');
     $(".taskal-container").css("display", "block");
+    document.update_task_form.reset();
+    $(".error-message").remove();
   });
 });
 

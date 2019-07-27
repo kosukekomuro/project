@@ -142,4 +142,17 @@ window.onload = () => {
       e.preventDefault();
     };
   });
+
+  $('.update-task-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+    // タスクの入力値チェック
+    if(checkInput($(".update-task-form__task-name").val())){
+      let html = `<p class="error-message">
+                    タスク名を入力してください
+                  </p>`
+      $(".update-task-form__task-name").after(html);
+      e.preventDefault();
+    };
+  });
 };
