@@ -121,6 +121,7 @@ ul{
   }
 
 .main-footer{
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -174,7 +175,7 @@ ul{
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 80%;
+  height: 310px;
   background-color: white;
   display: none;
   padding: 20px;
@@ -218,3 +219,49 @@ ul{
       color: var(--font-color-blue);
       text-decoration: none;
     }
+
+.update_task{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 310px;
+  background-color: white;
+  display: none;
+  padding: 20px;
+  border-radius: 10px;
+}
+  .update-task-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    .update-task-form__task-name{
+      width: 347px;
+    }
+    .update-task-form__task-discription{
+      margin-top: 20px;
+    }
+    .update-task-form__task-due-date{
+      margin-top: 20px;
+      width: 347px;
+    }
+    .update-task-form__btn{
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      margin-top: 20px auto;
+      padding: 20px 10px;
+    }
+      .update-task-form__btn--blue{
+        width: 100px;
+        padding: 10px;
+        background-color: var(--btn-color-blue);
+        color: var(--font-color-white);
+      }
+      .update-task-form__btn--blue:hover{
+        background-color: var(--btn-color-white);
+        color: var(--font-color-blue);
+        text-decoration: none;
+      }

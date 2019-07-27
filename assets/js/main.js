@@ -1,9 +1,9 @@
+let dragSrcEl = null;
+let taskOrder = null;
+
 Pace.on('done', function(){
   $('.taskal-container').fadeIn();
 });
-
-let dragSrcEl = null;
-let taskOrder = null;
 
 const handleDragStart = e => {
   dragSrcEl = e.currentTarget;
@@ -73,7 +73,6 @@ const handleDrop = e => {
         dataType: 'json',
       })
       .done(function(data){
-        // console.log(data);
 
       })
       .fail(function(){
@@ -122,16 +121,32 @@ $(function(){
   const cols = document.querySelectorAll(".task-main__task-ul .task-list");
   [].forEach.call(cols, addDnDHandlers);
 
-
   // ポップアップ画面の表示
   $(".make-task-details").on("click", () => {
+    $(".task-main").css("display", "none");
     $(".detail_task").css("display", "block");
     $(".taskal-container").css("background-color", "rgba(0,0,0,0.4)");
   });
 
-  // キャンセルボタンの桜花
+  // キャンセルボタンの押下
   $(".add-detail-task-form__cancel-btn").on("click", () => {
+    $(".task-main").css("display", "block");
     $(".detail_task").removeAttr('style');
+    $(".taskal-container").removeAttr('style');
+    $(".taskal-container").css("display", "block");
+  });
+
+  // タスク変更画面の表示
+  $(".one-task__update-btn").on("click", () => {
+    $(".task-main").css("display", "none");
+    $(".update_task").css("display", "block");
+    $(".taskal-container").css("background-color", "rgba(0,0,0,0.4)");
+  });
+
+  // キャンセルボタンの桜花
+  $(".update-task-form__cancel-btn").on("click", () => {
+    $(".task-main").css("display", "block");
+    $(".update_task").removeAttr('style');
     $(".taskal-container").removeAttr('style');
     $(".taskal-container").css("display", "block");
   });

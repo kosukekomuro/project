@@ -35,13 +35,24 @@
   <div class="container-feild main-background taskal-container">
     <div class="detail_task">
       <form id="detail_task_form" class="add-detail-task-form" name="add_detail_task_form" action="../../models/tasks/add_task_detail.php" method="POST">
-          <input type="text" id="detail_task_name" name="detail_task_name" placeholder="タスク名" class="add-detail-task-form__task-name" cols="40">
-          <textarea id="task_discription" name="task_discription" placeholder="タスク詳細" class="add-detail-task-form__task-discription", cols="40" rows="8"></textarea>
-          <input type="datetime-local" id="task_due_date" name="task_due_date" placeholder="期限" class="add-detail-task-form__task-due-date">
-          <div class="add-detail-task-form__btn">
-            <input type="submit" value="作成" class="add-detail-task-form__btn--blue">
-            <input type="button" class="add-detail-task-form__btn--blue add-detail-task-form__cancel-btn" value="キャンセル">
-          </div>
+        <input type="text" id="detail_task_name" name="detail_task_name" placeholder="タスク名" class="add-detail-task-form__task-name" cols="40">
+        <textarea id="task_discription" name="task_discription" placeholder="タスク詳細" class="add-detail-task-form__task-discription", cols="40" rows="8"></textarea>
+        <input type="datetime-local" id="task_due_date" name="task_due_date" placeholder="期限" class="add-detail-task-form__task-due-date">
+        <div class="add-detail-task-form__btn">
+          <input type="submit" value="作成" class="add-detail-task-form__btn--blue">
+          <input type="button" class="add-detail-task-form__btn--blue add-detail-task-form__cancel-btn" value="キャンセル">
+        </div>
+      </form>
+    </div>
+    <div class="update_task">
+      <form id="update_task_form" class="update-task-form" name="update_task_form" action="../../models/tasks/update_task.php" method="POST">
+        <input type="text" id="update_task_name" name="update_task_name" placeholder="タスク名" class="update-task-form__task-name" cols="40">
+        <textarea id="task_discription" name="task_discription" placeholder="タスク詳細" class="update-task-form__task-discription", cols="40" rows="8"></textarea>
+        <input type="datetime-local" id="task_due_date" name="task_due_date" placeholder="期限" class="update-task-form__task-due-date">
+        <div class="update-task-form__btn">
+          <input type="submit" value="作成" class="update-task-form__btn--blue">
+          <input type="button" class="update-task-form__btn--blue update-task-form__cancel-btn" value="キャンセル">
+        </div>
       </form>
     </div>
     <header class="main-header">
@@ -69,7 +80,10 @@
           print '</span>'; 
           print "<input type='hidden' class='task_info' name='task_id' value={$rec['id']} task_order = {$rec['task_order']}" ;
           print '>';
+          print '<div>';
+          print '<input type="button" class="one-task__update-btn" value="変更">';
           print '<input type="submit" value="完了">';
+          print '</div>';
           print '</form>';
           print '</li>';
           $num += 1;
@@ -83,10 +97,10 @@
         <input type="submit" value="作成">
         <input type="button" class="make-task-details" value="詳細作成">
       </form>
-    </main>
-    <footer class="main-footer">
-      <a class="btn btn-primary" href="../../controllers/logout.php">ログアウト</a>
+      <footer class="main-footer">
+        <a class="btn btn-primary" href="../../controllers/logout.php">ログアウト</a>
     </footer>
+    </main>
   </div>
 
   <!-- jsの読み込み -->
