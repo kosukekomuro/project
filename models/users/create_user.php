@@ -1,38 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+<?php
+  // 共通の関数読み込み;
+  require_once('../../common/common.php');
 
-<body>
-  <?php
+  $_POST=sanitize($_POST);
 
     try{
       $user_name = $_POST['user_name'];
-      $user_pass = $_POST['password'];
+      $user_pass = $_POST['user_password'];
 
       $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
       $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
 
-      // ローカル環境の場合、読み込む
-      //環境変数のよみこみ
-      if(getenv('SERVER_NAME') == "localhost"){
-        require_once '/opt/lampp/htdocs/project/vendor/autoload.php';
-        // $dotenv = Dotenv\Dotenv::create(__DIR__.'/../');
-        $dotenv = Dotenv\Dotenv::create('/opt/lampp/htdocs/project');
-        $dotenv->load();
-      }
-
-      $db['db_name'] = getenv('DATABASE_NAME');
-      $db['db_host'] = getenv('DATABASE_HOST');
-      $db['db_user'] = getenv('DATABASE_USER');
-      $db['db_pass'] = getenv('DATABASE_PASS');
-
       // データベースに接続
-      $dsn = "mysql:dbname=$db[db_name];host=$db[db_host];charset=utf8";
-      $dbn = new PDO($dsn, $db['db_user'], $db['db_pass']);
-      $dbn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $dbn = connection_to_db();
 
       //SQLの発行
       $sql = 'INSERT INTO users(name, password, created_at, updated_at) VALUES (?,?,?,?)';
@@ -48,8 +28,15 @@
       // データベースから切断する。
       $dbn = null;
 
-      print $user_name;
-      print 'さんを追加しました。<br>';
+      // セッションの開始
+		  // sessionがない場合は、自動で合言葉を決める
+      session_start();
+      $_SESSION['login']=1;
+      $_SESSION['user_name']= $rec['name'];
+      $_SESSION['user_id']= $rec['id'];
+  
+      // 遷移先の画面指定
+      header('Location: ../../views/tasks/task_list.php');
 
     }catch(Exception $e){
       // SQLのエラーは通常表示されないが、以下のようにすることで表示することができる
@@ -60,8 +47,3 @@
       print 'ただいま障害により大変ご迷惑をおかけしております';
     }
   ?>
-
-  <a href="user_list.php">もどる</a>
-</body>
-
-</html>
