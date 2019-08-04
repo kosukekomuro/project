@@ -1,4 +1,5 @@
 <?php
+
   header("Content-Type: application/json; charset=UTF-8");
 
   // 共通の関数読み込み;

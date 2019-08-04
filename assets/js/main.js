@@ -141,7 +141,8 @@ $(function(){
   $(".one-task__update-btn").on("click", e => {
 
     const task = $(e.currentTarget);
-    data = {task_id: task.attr('task_id')};
+    const taskId = task.attr('task_id');
+    data = {task_id: taskId};
 
       $.ajax({
         url: "../../models/tasks/select_task.php",
@@ -161,6 +162,7 @@ $(function(){
         $('.update-task-form__task-name').val(data.task_name);
         $('.update-task-form__task-discription').val(data.task_discription);
         $('.update-task-form__task-due-date').val(dueDate);
+        $('.update-task-form__task-id').val(taskId);
 
         // ポップアップ画面の表示
         $(".task-main").css("display", "none");

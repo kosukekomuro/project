@@ -49,6 +49,7 @@
         <input type="text" id="update_task_name" name="update_task_name" placeholder="タスク名" class="update-task-form__task-name" cols="40">
         <textarea id="task_discription" name="task_discription" placeholder="タスク詳細" class="update-task-form__task-discription", cols="40" rows="8"></textarea>
         <input type="datetime-local" id="task_due_date" name="task_due_date" placeholder="期限" class="update-task-form__task-due-date">
+        <input type="hidden" name="task_id" class="update-task-form__task-id">
         <div class="update-task-form__btn">
           <input type="submit" value="作成" class="update-task-form__btn--blue">
           <input type="button" class="update-task-form__btn--blue update-task-form__cancel-btn" value="キャンセル">
