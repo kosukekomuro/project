@@ -184,27 +184,22 @@ $(function(){
     $(".error-message").remove();
   });
 
+  // ログイン画面のエラーチェック
+  // ログインボタン押下時に発火
   $('.login-form').on('submit', (e) =>{
 
     $(".error-message").remove();
 
-    // ユーザー名が空欄の時
-    if(checkInput(document.login_form.user_name.value)){
-      let html = `<p class="error-message">
-                    ユーザー名が入力されていません
-                  </p>`
-      
-      $('.login-form__name').after(html);
+    
+    if(
+      checkInput(document.login_form.user_name.value, errorMessage001, '.login-form__name')
+    ){
       e.preventDefault();
     };
 
-    // パスワードが空欄の時
-    if(checkInput(document.login_form.user_password.value)){
-      let html = `<p class="error-message">
-                    パスワードが入力されていません
-                  </p>`
-
-      $('.login-form__password').after(html);
+    if(
+      checkInput(document.login_form.user_password.value, errorMessage002, '.login-form__password')
+    ){
       e.preventDefault();
     };
 
@@ -233,6 +228,66 @@ $(function(){
     //     console.log(data);
     //   });
     // };
+  });
+
+  // ユーザー登録画面のチェックを行う。
+  $('.sign-up-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+
+    // ユーザー名チェック
+    if(
+      checkInput(document.sign_up_form.user_name.value, errorMessage001, '.sign-up-form__name')
+    ){
+      e.preventDefault();
+    };
+
+    // パスワードチェック
+    if(checkInput(document.sign_up_form.user_password.value, errorMessage002, '.sign-up-form__password')
+    ){
+      e.preventDefault();
+    };
+
+    // パスワードの再確認チェック
+    if(checkInputConfirmPassword(document.sign_up_form.user_confirm_password.value, document.sign_up_form.user_password.value, errorMessage003, '.sign-up-form__confirm-password')
+    ){
+      e.preventDefault();
+    };
+  });
+
+
+  // タスク一覧画面にて、タスク追加時の入力チェックを行う
+  $('.task-main__add-task-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+
+    // タスクの入力値チェック
+    if(checkInput($(".task-name").val(), errorMessage004, '.task-main__add-task-form')
+    ){
+      e.preventDefault();
+    };
+  });
+
+  //  タスクの詳細追加画面にて、タスク追加時に入力チェックを行う。
+  $('.add-detail-task-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+    // タスクの入力値チェック
+    if(checkInput($(".add-detail-task-form__task-name").val(), errorMessage004, '.add-detail-task-form__task-name')
+    ){
+      e.preventDefault();
+    };
+  });
+
+  // タスク更新画面にて、タスクの更新時にに入力チェックを行う
+  $('.update-task-form').on('submit', (e) =>{
+    
+    $(".error-message").remove();
+    // タスクの入力値チェック
+    if(checkInput($(".update-task-form__task-name").val(), errorMessage004, '.update-task-form__task-name')
+    ){
+      e.preventDefault();
+    };
   });
 });
 

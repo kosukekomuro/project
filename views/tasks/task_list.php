@@ -14,7 +14,7 @@
     $stmt = $dbn->prepare($sql);
     $data[] = $_SESSION['user_id'];
     
-    // stmtには検索したデータの一覧が代入うされている
+    // stmtには検索したデータの一覧が代入されている
     $stmt->execute($data);
     
     // データベースから切断する。
