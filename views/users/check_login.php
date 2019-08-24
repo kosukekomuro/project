@@ -5,7 +5,7 @@
 
     $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
     $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
-    $user_pass = md5($user_pass);
+    // $user_pass = md5($user_pass);
     
     // ローカル環境の場合、読み込む
     //環境変数のよみこみ

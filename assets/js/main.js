@@ -13,7 +13,6 @@ const handleDragStart = e => {
   taskOrder = dragSrcEl.getElementsByClassName('task_info')[0].getAttribute("task_order");
 }
 
-
 const handleDragOver = e => {
   // デフォルトのアクションを防ぐ 
   e.preventDefault();
@@ -190,17 +189,23 @@ $(function(){
 
     $(".error-message").remove();
 
-    
+    // 入力されたユーザー名, ユーザパスワードの取得
+    const userName = document.login_form.user_name.value;
+    const userPassword = document.login_form.user_password.value
+    let loginFlug = true;
+
     if(
-      checkInput(document.login_form.user_name.value, errorMessage001, '.login-form__name')
+      checkInput(userName, errorMessage001, '.login-form__name')
     ){
       e.preventDefault();
+      loginFlug = false;
     };
 
     if(
-      checkInput(document.login_form.user_password.value, errorMessage002, '.login-form__password')
+      checkInput(userPassword, errorMessage002, '.login-form__password')
     ){
       e.preventDefault();
+      loginFlug = false;
     };
 
     // Todo ログイン判定を非同期う
@@ -228,6 +233,57 @@ $(function(){
     //     console.log(data);
     //   });
     // };
+
+    // 非同期処理は同期処理と同時進行で進むため、非同期処理に入る前に一旦
+    // デフォルトの処理を止める必要あり。
+    // 非同期処理後に再開する
+    e.preventDefault();
+
+    if(loginFlug){
+
+      const _this = e.currentTarget;
+      
+      // ユーザー認証apiに送信
+      // 送信データの作成
+      data = {user_name: userName, user_password: userPassword};
+
+      $.ajax({
+        url: "api/v1/authenticate.php",
+        type: "POST",
+        data: data,
+        dataType: 'json'
+      })
+      .done(function(data){
+        console.log(data);
+
+        console.log(data.result.code);
+        
+        // __proto__はオブジェクトが作られると裏で作られるObject.prototype
+        // 参考記事
+        // https://qiita.com/howdy39/items/35729490b024ca295d6c
+        console.log(data.__proto__ == Object.prototype);
+
+        // 一致するユーザーが存在しない場合のエラー
+        if(data.result.code == 3){
+          console.log("認証エラー");
+          $(".error-message").remove();
+          addErrorMessage(errorMessage005, '.login-form__name');
+        };
+
+        // 正常な場合
+        if(data.result.code == 1){
+          // デフィルトの送信処理を再開する
+          _this.submit();
+        };
+      })
+      .fail(function(jqXHR, textStatus, errorThrown ){
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        // エラーメッセージを表示する
+        console.log(jqXHR.responseText);
+      });
+    };
   });
 
   // ユーザー登録画面のチェックを行う。

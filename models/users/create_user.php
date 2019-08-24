@@ -8,8 +8,8 @@
       $user_name = $_POST['user_name'];
       $user_pass = $_POST['user_password'];
 
-      $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
-      $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
+      // $user_name = htmlspecialchars($user_name, ENT_NOQUOTES, 'UTF-8');
+      // $user_pass = htmlspecialchars($user_pass, ENT_NOQUOTES, 'UTF-8');
 
       // データベースに接続
       $dbn = connection_to_db();

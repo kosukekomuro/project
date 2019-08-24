@@ -8,11 +8,8 @@
 */
 const checkInput = (input, errorMessage, addLocation) =>{
   if(input.length == 0){
-    const html = `<p class="error-message">
-                    ${errorMessage}
-                  </p>`
 
-    $(addLocation).after(html);
+    addErrorMessage(errorMessage, addLocation);
     return true
   }
   return false
@@ -30,12 +27,23 @@ const checkInput = (input, errorMessage, addLocation) =>{
 const checkInputConfirmPassword = (confirmPass, password, errorMessage, addLocation) =>{
   // ユーザー未入力時
   if(password != confirmPass){
-    const html = `<p class="error-message">
-                    ${errorMessage}
-                  </p>`
 
-    $(addLocation).after(html);
+    addErrorMessage(errorMessage, addLocation);
     return true
   }
   return false
 };
+
+/**
+*エラーメッセージを追加する
+*@constructor
+*@param {String} errorMessage 出力するエラーメッセージ
+*@param {String} addLocation エラーメッセージの追加場所を指定 
+*/
+const addErrorMessage = (errorMessage, addLocation) => {
+  const html = `<p class="error-message">
+                  ${errorMessage}
+                </p>`
+
+  $(addLocation).after(html);
+}
