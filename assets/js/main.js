@@ -286,28 +286,83 @@ $(function(){
     };
   });
 
-  // ユーザー登録画面のチェックを行う。
+  // ユーザー登録画面、新規登録画面のチェックを行う。
   $('.sign-up-form').on('submit', (e) =>{
+
+    const userName = document.sign_up_form.user_name.value;
+    const userPassword = document.sign_up_form.user_password.value;
+    const userConfirmPassword = document.sign_up_form.user_confirm_password.value;
+    let signupFlug = true;
     
     $(".error-message").remove();
 
     // ユーザー名チェック
     if(
-      checkInput(document.sign_up_form.user_name.value, errorMessage001, '.sign-up-form__name')
+      checkInput(userName, errorMessage001, '.sign-up-form__name')
     ){
       e.preventDefault();
+      signupFlug = false;
     };
 
     // パスワードチェック
-    if(checkInput(document.sign_up_form.user_password.value, errorMessage002, '.sign-up-form__password')
+    if(checkInput(userPassword, errorMessage002, '.sign-up-form__password')
     ){
       e.preventDefault();
+      signupFlug = false;
     };
 
     // パスワードの再確認チェック
-    if(checkInputConfirmPassword(document.sign_up_form.user_confirm_password.value, document.sign_up_form.user_password.value, errorMessage003, '.sign-up-form__confirm-password')
+    if(checkInputConfirmPassword(userConfirmPassword, userPassword, errorMessage003, '.sign-up-form__confirm-password')
     ){
       e.preventDefault();
+      signupFlug = false;
+    };
+
+    // 一旦デフォルトのイベントを止める
+    e.preventDefault();
+    if(signupFlug){
+      const _this = e.currentTarget;
+      
+      // ユーザー登録apiに送信
+      // 送信データの作成
+      data = {user_name: userName, user_password: userPassword};
+
+      $.ajax({
+        url: "../../api/v1/users/register.php",
+        type: "POST",
+        data: data,
+        dataType: 'json'
+      })
+      .done(function(data){
+        console.log(data);
+
+        console.log("成功");
+        
+        // __proto__はオブジェクトが作られると裏で作られるObject.prototype
+        // 参考記事
+        // https://qiita.com/howdy39/items/35729490b024ca295d6c
+        console.log(data.__proto__ == Object.prototype);
+
+        // 一致するユーザーが存在しない場合のエラー
+        if(data.result.code == 3){
+          console.log("重複エラー");
+          $(".error-message").remove();
+          addErrorMessage(errorMessage006, '.sign-up-form__name');
+        };
+
+        // 正常な場合
+        if(data.result.code == 1){
+          // デフィルトの送信処理を再開する
+          _this.submit();
+        };
+      })
+      .fail(function(jqXHR, textStatus, errorThrown ){
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        // エラーメッセージを表示する
+        console.log(jqXHR.responseText);
+      });
     };
   });
 
