@@ -46,6 +46,14 @@
       print 'ユーザー名またはパスワードが間違っています';
       print '<a href="/project">もどる</a>';
     }else{
+
+
+      // クッキーの発行
+      $value = 'something from somewhere';
+
+      setcookie("TestCookie", $value, time()+3600, "/~rasmus/", "example.com", 1);
+
+      // exit('終了します');
       // セッションの開始
       // sessionがない場合は、自動で合言葉を決める
       session_start();
